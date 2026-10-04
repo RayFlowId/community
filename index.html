@@ -4,1042 +4,344 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="description"
-    content="Rayyy Community — tempat berbagi, ngobrol, dan menemukan hal baru."
-  >
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="description" content="Community Rayy - Login dan register">
 
-  <meta name="theme-color" content="#08090d">
+  <title>Community Rayy</title>
 
-  <title>Rayyy Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- ================= APP ================= -->
+  <!-- Background -->
+  <div class="background">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="grid"></div>
+  </div>
 
-  <div class="app">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-logo">R</div>
+      <span>Community <b>Rayy</b></span>
+    </div>
 
-    <!-- ================= SIDEBAR ================= -->
+    <div class="status">
+      <span class="status-dot"></span>
+      Online
+    </div>
+  </header>
 
-    <aside class="sidebar">
+  <main>
 
-      <a href="#" class="brand">
-        <span class="brand-mark">R</span>
+    <!-- ================= LOGIN / REGISTER ================= -->
+    <section id="authSection" class="auth-section">
 
-        <span>
-          rayyy<span>.</span>
-        </span>
-      </a>
+      <div class="auth-card">
+
+        <div class="auth-header">
+          <div class="big-logo">R</div>
+
+          <h1 id="authTitle">Selamat datang 👋</h1>
+
+          <p id="authSubtitle">
+            Login untuk masuk ke Community Rayy.
+          </p>
+        </div>
+
+        <!-- Notification -->
+        <div id="message" class="message hidden"></div>
+
+        <!-- Login -->
+        <form id="loginForm" class="auth-form">
+
+          <label for="loginEmail">
+            Email
+          </label>
+
+          <input
+            id="loginEmail"
+            type="email"
+            placeholder="nama@email.com"
+            autocomplete="email"
+            required
+          >
+
+          <label for="loginPassword">
+            Password
+          </label>
+
+          <div class="password-wrapper">
+            <input
+              id="loginPassword"
+              type="password"
+              placeholder="Masukkan password"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              data-target="loginPassword"
+              aria-label="Tampilkan password"
+            >
+              👁
+            </button>
+          </div>
+
+          <button id="loginButton" class="primary-button" type="submit">
+            <span>Masuk</span>
+          </button>
+
+          <button
+            type="button"
+            id="forgotPassword"
+            class="text-button"
+          >
+            Lupa password?
+          </button>
+
+          <div class="divider">
+            <span>atau</span>
+          </div>
+
+          <p class="switch-text">
+            Belum punya akun?
+            <button type="button" id="showRegister">
+              Daftar sekarang
+            </button>
+          </p>
+
+        </form>
 
 
-      <nav class="main-nav">
+        <!-- Register -->
+        <form id="registerForm" class="auth-form hidden">
 
-        <a href="#home" class="nav-item active" data-page="home">
-          <span class="nav-icon">⌂</span>
-          <span>Home</span>
-        </a>
+          <label for="registerEmail">
+            Email
+          </label>
 
-        <a href="#explore" class="nav-item" data-page="explore">
-          <span class="nav-icon">⌕</span>
-          <span>Explore</span>
-        </a>
+          <input
+            id="registerEmail"
+            type="email"
+            placeholder="nama@email.com"
+            autocomplete="email"
+            required
+          >
 
-        <a href="#notifications" class="nav-item" data-page="notifications">
-          <span class="nav-icon">♢</span>
-          <span>Notifications</span>
-          <b class="notification-count">3</b>
-        </a>
+          <label for="registerPassword">
+            Password
+          </label>
 
-        <a href="#bookmarks" class="nav-item" data-page="bookmarks">
-          <span class="nav-icon">◇</span>
-          <span>Bookmarks</span>
-        </a>
+          <div class="password-wrapper">
+            <input
+              id="registerPassword"
+              type="password"
+              placeholder="Minimal 6 karakter"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            >
 
-        <a href="#profile" class="nav-item" data-page="profile">
-          <span class="nav-icon">◎</span>
-          <span>Profile</span>
-        </a>
+            <button
+              type="button"
+              class="show-password"
+              data-target="registerPassword"
+              aria-label="Tampilkan password"
+            >
+              👁
+            </button>
+          </div>
 
-      </nav>
+          <label for="registerPasswordConfirm">
+            Ulangi Password
+          </label>
+
+          <div class="password-wrapper">
+            <input
+              id="registerPasswordConfirm"
+              type="password"
+              placeholder="Ulangi password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              data-target="registerPasswordConfirm"
+              aria-label="Tampilkan password"
+            >
+              👁
+            </button>
+          </div>
+
+          <button id="registerButton" class="primary-button" type="submit">
+            <span>Buat akun</span>
+          </button>
+
+          <p class="terms">
+            Dengan mendaftar, kamu menyetujui penggunaan
+            Community Rayy.
+          </p>
+
+          <div class="divider">
+            <span>atau</span>
+          </div>
+
+          <p class="switch-text">
+            Sudah punya akun?
+            <button type="button" id="showLogin">
+              Login
+            </button>
+          </p>
+
+        </form>
+
+      </div>
+
+    </section>
 
 
-      <button class="create-button" id="openCreate">
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dashboardSection" class="dashboard hidden">
 
-        <span>+</span>
+      <div class="dashboard-container">
 
-        <strong>
-          Create post
-        </strong>
+        <div class="dashboard-top">
 
-      </button>
+          <div>
+            <span class="eyebrow">
+              COMMUNITY RAYY
+            </span>
+
+            <h1>
+              Dashboard
+            </h1>
+
+            <p>
+              Selamat datang kembali 👋
+            </p>
+          </div>
+
+          <button id="logoutButton" class="logout-button">
+            Keluar
+          </button>
+
+        </div>
 
 
-      <div class="sidebar-bottom">
+        <div class="welcome-card">
 
-        <div class="mini-profile">
+          <div class="avatar">
+            <span id="avatarLetter">R</span>
+          </div>
 
-          <div class="avatar avatar-purple">
-            R
+          <div class="welcome-content">
+
+            <span class="small-label">
+              AKUN KAMU
+            </span>
+
+            <h2 id="userEmail">
+              -
+            </h2>
+
+            <div class="account-status">
+              <span></span>
+              Akun aktif
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">👤</div>
+
+            <div>
+              <h3>Profile</h3>
+              <p>
+                Informasi akun kamu akan tampil di sini.
+              </p>
+            </div>
+
+            <span class="arrow">→</span>
+          </article>
+
+
+          <article class="feature-card">
+            <div class="feature-icon">💬</div>
+
+            <div>
+              <h3>Community</h3>
+              <p>
+                Area komunitas sedang dipersiapkan.
+              </p>
+            </div>
+
+            <span class="arrow">→</span>
+          </article>
+
+
+          <article class="feature-card">
+            <div class="feature-icon">🚀</div>
+
+            <div>
+              <h3>Projects</h3>
+              <p>
+                Fitur project akan hadir di sini.
+              </p>
+            </div>
+
+            <span class="arrow">→</span>
+          </article>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <div class="info-icon">
+            ✨
           </div>
 
           <div>
-
-            <strong>
-              rayy
-            </strong>
-
-            <span>
-              @rayy
-            </span>
-
-          </div>
-
-          <button
-            class="more-button"
-            aria-label="More"
-          >
-            •••
-          </button>
-
-        </div>
-
-      </div>
-
-    </aside>
-
-
-    <!-- ================= MAIN ================= -->
-
-    <main class="main">
-
-      <!-- TOPBAR -->
-
-      <header class="topbar">
-
-        <button
-          class="mobile-menu"
-          id="mobileMenu"
-          aria-label="Open menu"
-        >
-          ☰
-        </button>
-
-        <div class="mobile-brand">
-          rayyy<span>.</span>
-        </div>
-
-        <div class="top-search">
-
-          <span>⌕</span>
-
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="Search posts, people..."
-            autocomplete="off"
-          >
-
-        </div>
-
-        <button
-          class="mobile-create"
-          id="mobileCreate"
-        >
-          +
-        </button>
-
-      </header>
-
-
-      <!-- PAGE CONTAINER -->
-
-      <div class="content">
-
-
-        <!-- ================= HOME ================= -->
-
-        <section
-          class="page active"
-          id="page-home"
-        >
-
-          <div class="page-heading">
-
-            <div>
-
-              <span class="eyebrow">
-                COMMUNITY
-              </span>
-
-              <h1>
-                Home
-              </h1>
-
-              <p>
-                What's happening around Rayyy Community.
-              </p>
-
-            </div>
-
-            <button
-              class="small-create"
-              id="headingCreate"
-            >
-              + Post
-            </button>
-
-          </div>
-
-
-          <!-- COMPOSER -->
-
-          <div class="composer card">
-
-            <div class="avatar avatar-purple">
-              R
-            </div>
-
-            <button
-              class="composer-input"
-              id="composerOpen"
-            >
-              What's happening?
-            </button>
-
-            <button
-              class="composer-send"
-              id="composerSend"
-            >
-              Post
-            </button>
-
-          </div>
-
-
-          <!-- FEED -->
-
-          <div
-            class="feed"
-            id="feed"
-          ></div>
-
-        </section>
-
-
-        <!-- ================= EXPLORE ================= -->
-
-        <section
-          class="page"
-          id="page-explore"
-        >
-
-          <div class="page-heading">
-
-            <div>
-
-              <span class="eyebrow">
-                DISCOVER
-              </span>
-
-              <h1>
-                Explore
-              </h1>
-
-              <p>
-                Find interesting posts and people.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="explore-search card">
-
-            <span>⌕</span>
-
-            <input
-              type="search"
-              id="exploreSearch"
-              placeholder="Search the community..."
-            >
-
-          </div>
-
-
-          <div class="section-title">
-            Trending
-          </div>
-
-          <div class="trend-grid">
-
-            <button class="trend-card">
-              <span>#webdevelopment</span>
-              <strong>1.2K posts</strong>
-            </button>
-
-            <button class="trend-card">
-              <span>#design</span>
-              <strong>847 posts</strong>
-            </button>
-
-            <button class="trend-card">
-              <span>#javascript</span>
-              <strong>692 posts</strong>
-            </button>
-
-            <button class="trend-card">
-              <span>#gaming</span>
-              <strong>534 posts</strong>
-            </button>
-
-          </div>
-
-
-          <div class="section-title">
-            Suggested people
-          </div>
-
-
-          <div class="people-grid">
-
-            <article class="person-card card">
-
-              <div class="avatar avatar-blue">
-                D
-              </div>
-
-              <div class="person-info">
-
-                <strong>
-                  Dimas
-                </strong>
-
-                <span>
-                  @dimasdev
-                </span>
-
-              </div>
-
-              <button
-                class="follow-button"
-                data-follow="Dimas"
-              >
-                Follow
-              </button>
-
-            </article>
-
-
-            <article class="person-card card">
-
-              <div class="avatar avatar-pink">
-                N
-              </div>
-
-              <div class="person-info">
-
-                <strong>
-                  Naya
-                </strong>
-
-                <span>
-                  @naya
-                </span>
-
-              </div>
-
-              <button
-                class="follow-button"
-                data-follow="Naya"
-              >
-                Follow
-              </button>
-
-            </article>
-
-
-            <article class="person-card card">
-
-              <div class="avatar avatar-green">
-                F
-              </div>
-
-              <div class="person-info">
-
-                <strong>
-                  Fajar
-                </strong>
-
-                <span>
-                  @fajar
-                </span>
-
-              </div>
-
-              <button
-                class="follow-button"
-                data-follow="Fajar"
-              >
-                Follow
-              </button>
-
-            </article>
-
-          </div>
-
-        </section>
-
-
-        <!-- ================= NOTIFICATIONS ================= -->
-
-        <section
-          class="page"
-          id="page-notifications"
-        >
-
-          <div class="page-heading">
-
-            <div>
-
-              <span class="eyebrow">
-                ACTIVITY
-              </span>
-
-              <h1>
-                Notifications
-              </h1>
-
-              <p>
-                Everything happening around your account.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="notification-list card">
-
-            <article class="notification-item">
-
-              <div class="notification-icon like">
-                ♥
-              </div>
-
-              <div>
-                <p>
-                  <strong>Dimas</strong>
-                  liked your post.
-                </p>
-
-                <span>
-                  5 minutes ago
-                </span>
-              </div>
-
-            </article>
-
-
-            <article class="notification-item">
-
-              <div class="notification-icon comment">
-                💬
-              </div>
-
-              <div>
-                <p>
-                  <strong>Naya</strong>
-                  commented on your post.
-                </p>
-
-                <span>
-                  24 minutes ago
-                </span>
-              </div>
-
-            </article>
-
-
-            <article class="notification-item">
-
-              <div class="notification-icon follow">
-                +
-              </div>
-
-              <div>
-                <p>
-                  <strong>Fajar</strong>
-                  started following you.
-                </p>
-
-                <span>
-                  1 hour ago
-                </span>
-              </div>
-
-            </article>
-
-          </div>
-
-        </section>
-
-
-        <!-- ================= BOOKMARKS ================= -->
-
-        <section
-          class="page"
-          id="page-bookmarks"
-        >
-
-          <div class="page-heading">
-
-            <div>
-
-              <span class="eyebrow">
-                SAVED
-              </span>
-
-              <h1>
-                Bookmarks
-              </h1>
-
-              <p>
-                Posts you want to keep.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div
-            class="feed"
-            id="bookmarkFeed"
-          ></div>
-
-          <div
-            class="empty-state"
-            id="bookmarkEmpty"
-          >
-
-            <div class="empty-icon">
-              ◇
-            </div>
-
-            <h3>
-              No bookmarks yet
-            </h3>
-
+            <h3>Community Rayy</h3>
             <p>
-              Save posts from your feed to see them here.
+              Tempat untuk mengembangkan project,
+              berbagi karya, dan membangun komunitas.
             </p>
-
           </div>
 
-        </section>
-
-
-        <!-- ================= PROFILE ================= -->
-
-        <section
-          class="page"
-          id="page-profile"
-        >
-
-          <div class="profile-header card">
-
-            <div class="profile-cover"></div>
-
-            <div class="profile-main">
-
-              <div class="large-avatar avatar-purple">
-                R
-              </div>
-
-              <div class="profile-actions">
-
-                <button class="outline-button">
-                  Edit profile
-                </button>
-
-              </div>
-
-              <h1>
-                Rayy
-              </h1>
-
-              <span class="username">
-                @rayy
-              </span>
-
-              <p class="profile-bio">
-                Building things with curiosity.
-                Web developer, creator & learner.
-              </p>
-
-              <div class="profile-meta">
-
-                <span>
-                  ◉ Indonesia
-                </span>
-
-                <span>
-                  ◷ Joined 2026
-                </span>
-
-              </div>
-
-
-              <div class="profile-stats">
-
-                <div>
-                  <strong id="profileFollowing">
-                    128
-                  </strong>
-                  <span>Following</span>
-                </div>
-
-                <div>
-                  <strong>
-                    2.4K
-                  </strong>
-                  <span>Followers</span>
-                </div>
-
-                <div>
-                  <strong id="profilePosts">
-                    12
-                  </strong>
-                  <span>Posts</span>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="profile-tabs">
-
-            <button class="profile-tab active">
-              Posts
-            </button>
-
-            <button class="profile-tab">
-              Replies
-            </button>
-
-            <button class="profile-tab">
-              Media
-            </button>
-
-          </div>
-
-
-          <div
-            class="feed"
-            id="profileFeed"
-          ></div>
-
-        </section>
-
-      </div>
-
-    </main>
-
-
-    <!-- ================= RIGHT PANEL ================= -->
-
-    <aside class="rightbar">
-
-      <div class="right-search">
-
-        <span>⌕</span>
-
-        <input
-          type="search"
-          id="rightSearch"
-          placeholder="Search"
-        >
-
-      </div>
-
-
-      <div class="side-card">
-
-        <div class="side-card-heading">
-
-          <h3>
-            What's happening
-          </h3>
-
-          <span>
-            ⋯
-          </span>
-
-        </div>
-
-
-        <div class="trend-item">
-
-          <span>
-            Trending
-          </span>
-
-          <strong>
-            #webdevelopment
-          </strong>
-
-          <small>
-            1,204 posts
-          </small>
-
-        </div>
-
-
-        <div class="trend-item">
-
-          <span>
-            Trending
-          </span>
-
-          <strong>
-            #javascript
-          </strong>
-
-          <small>
-            692 posts
-          </small>
-
-        </div>
-
-
-        <div class="trend-item">
-
-          <span>
-            Trending
-          </span>
-
-          <strong>
-            #design
-          </strong>
-
-          <small>
-            847 posts
-          </small>
-
-        </div>
-
-        <button class="show-more">
-          Show more
-        </button>
-
-      </div>
-
-
-      <div class="side-card">
-
-        <div class="side-card-heading">
-
-          <h3>
-            Who to follow
-          </h3>
-
-        </div>
-
-
-        <div class="suggestion">
-
-          <div class="avatar avatar-blue">
-            D
-          </div>
-
-          <div class="suggestion-info">
-
-            <strong>
-              Dimas
-            </strong>
-
-            <span>
-              @dimasdev
-            </span>
-
-          </div>
-
-          <button
-            class="follow-button compact"
-            data-follow="Dimas"
-          >
-            Follow
-          </button>
-
-        </div>
-
-
-        <div class="suggestion">
-
-          <div class="avatar avatar-pink">
-            N
-          </div>
-
-          <div class="suggestion-info">
-
-            <strong>
-              Naya
-            </strong>
-
-            <span>
-              @naya
-            </span>
-
-          </div>
-
-          <button
-            class="follow-button compact"
-            data-follow="Naya"
-          >
-            Follow
-          </button>
-
-        </div>
-
-
-        <button class="show-more">
-          Show more
-        </button>
-
-      </div>
-
-
-      <footer class="site-footer">
-
-        <span>
-          © 2026 Rayyy Community
-        </span>
-
-        <a href="#">
-          Terms
-        </a>
-
-        <a href="#">
-          Privacy
-        </a>
-
-        <a href="#">
-          About
-        </a>
-
-      </footer>
-
-    </aside>
-
-  </div>
-
-
-  <!-- ================= CREATE MODAL ================= -->
-
-  <div
-    class="modal"
-    id="createModal"
-    aria-hidden="true"
-  >
-
-    <div class="modal-backdrop"></div>
-
-    <div class="modal-box post-modal">
-
-      <div class="modal-header">
-
-        <div>
-
-          <span class="eyebrow">
-            CREATE
-          </span>
-
-          <h2>
-            Create a post
-          </h2>
-
-        </div>
-
-        <button
-          class="modal-close"
-          id="closeCreate"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <div class="modal-author">
-
-        <div class="avatar avatar-purple">
-          R
-        </div>
-
-        <div>
-
-          <strong>
-            Rayy
-          </strong>
-
-          <span>
-            @rayy
-          </span>
-
         </div>
 
       </div>
 
+    </section>
 
-      <textarea
-        id="postText"
-        class="post-textarea"
-        maxlength="500"
-        placeholder="What's happening?"
-      ></textarea>
+  </main>
 
 
-      <div class="post-toolbar">
-
-        <div class="post-tools">
-
-          <button title="Image">
-            ▧
-          </button>
-
-          <button title="GIF">
-            GIF
-          </button>
-
-          <button title="Emoji">
-            ☺
-          </button>
-
-          <button title="Poll">
-            ▥
-          </button>
-
-        </div>
-
-        <span id="charCount">
-          0 / 500
-        </span>
-
-      </div>
+  <footer>
+    <span>© 2026 Community Rayy</span>
+    <span>Made with ♥ by Rayy</span>
+  </footer>
 
 
-      <div class="modal-actions">
-
-        <button
-          class="outline-button"
-          id="cancelCreate"
-        >
-          Cancel
-        </button>
-
-        <button
-          class="primary-button"
-          id="publishPost"
-        >
-          Post
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- ================= COMMENT MODAL ================= -->
-
-  <div
-    class="modal"
-    id="commentModal"
-    aria-hidden="true"
-  >
-
-    <div class="modal-backdrop"></div>
-
-    <div class="modal-box">
-
-      <div class="modal-header">
-
-        <div>
-
-          <span class="eyebrow">
-            COMMENTS
-          </span>
-
-          <h2>
-            Replies
-          </h2>
-
-        </div>
-
-        <button
-          class="modal-close"
-          id="closeComments"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <div
-        class="comments"
-        id="comments"
-      ></div>
-
-
-      <form
-        class="comment-form"
-        id="commentForm"
-      >
-
-        <div class="avatar avatar-purple">
-          R
-        </div>
-
-        <input
-          id="commentInput"
-          type="text"
-          maxlength="200"
-          placeholder="Write a reply..."
-          required
-        >
-
-        <button
-          type="submit"
-          class="primary-button"
-        >
-          Send
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-
-  <!-- ================= TOAST ================= -->
-
-  <div
-    class="toast"
-    id="toast"
-  ></div>
-
-
-  <script src="script.js"></script>
+  <script type="module" src="app.js"></script>
 
 </body>
 </html>
