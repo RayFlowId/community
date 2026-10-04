@@ -4,14 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#0b0d12">
-  <meta name="description" content="Community Rayy - Login dan register">
+  <meta name="theme-color" content="#08090d">
+  <meta name="description" content="Community Rayy — tempat berkumpul, berbagi, dan berkembang bersama.">
 
   <title>Community Rayy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -20,313 +24,675 @@
 
   <!-- Background -->
   <div class="background">
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div class="aurora aurora-three"></div>
     <div class="grid"></div>
+    <div class="noise"></div>
   </div>
 
-  <!-- Navbar -->
+
+  <!-- NAVBAR -->
   <header class="navbar">
-    <div class="brand">
-      <div class="brand-logo">R</div>
-      <span>Community <b>Rayy</b></span>
+
+    <a href="#" class="brand" aria-label="Community Rayy">
+
+      <div class="brand-mark">
+        <span>R</span>
+      </div>
+
+      <div class="brand-name">
+        <strong>Community</strong>
+        <span>Rayy</span>
+      </div>
+
+    </a>
+
+    <div class="nav-status">
+      <span class="pulse"></span>
+      <span>Community Online</span>
     </div>
 
-    <div class="status">
-      <span class="status-dot"></span>
-      Online
-    </div>
   </header>
+
 
   <main>
 
-    <!-- ================= LOGIN / REGISTER ================= -->
-    <section id="authSection" class="auth-section">
+    <!-- ==================================================
+         AUTH PAGE
+    =================================================== -->
 
-      <div class="auth-card">
+    <section id="authSection" class="auth-page">
 
-        <div class="auth-header">
-          <div class="big-logo">R</div>
+      <div class="auth-layout">
 
-          <h1 id="authTitle">Selamat datang 👋</h1>
+        <!-- LEFT / INTRO -->
+        <div class="intro">
 
-          <p id="authSubtitle">
-            Login untuk masuk ke Community Rayy.
+          <div class="intro-badge">
+            <span class="spark">✦</span>
+            <span id="timeGreeting">Selamat datang</span>
+          </div>
+
+          <h1>
+            Tempat kecil untuk
+            <span>ide yang besar.</span>
+          </h1>
+
+          <p>
+            Bergabung dengan Community Rayy untuk berbagi,
+            membuat sesuatu, dan berkembang bersama.
           </p>
+
+          <div class="intro-points">
+
+            <div class="point">
+              <div class="point-icon">✦</div>
+              <div>
+                <strong>Simple & nyaman</strong>
+                <span>Dirancang supaya enak digunakan.</span>
+              </div>
+            </div>
+
+            <div class="point">
+              <div class="point-icon">⚡</div>
+              <div>
+                <strong>Cepat</strong>
+                <span>Login dan akses akun dengan mudah.</span>
+              </div>
+            </div>
+
+            <div class="point">
+              <div class="point-icon">🔒</div>
+              <div>
+                <strong>Aman</strong>
+                <span>Authentication ditangani oleh Supabase.</span>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
-        <!-- Notification -->
-        <div id="message" class="message hidden"></div>
 
-        <!-- Login -->
-        <form id="loginForm" class="auth-form">
+        <!-- AUTH CARD -->
+        <div class="auth-card">
 
-          <label for="loginEmail">
-            Email
-          </label>
+          <div class="card-top">
 
-          <input
-            id="loginEmail"
-            type="email"
-            placeholder="nama@email.com"
-            autocomplete="email"
-            required
-          >
+            <div class="mini-logo">
+              R
+            </div>
 
-          <label for="loginPassword">
-            Password
-          </label>
+            <div class="secure-label">
+              <span class="secure-dot"></span>
+              Secure access
+            </div>
 
-          <div class="password-wrapper">
-            <input
-              id="loginPassword"
-              type="password"
-              placeholder="Masukkan password"
-              autocomplete="current-password"
-              required
-            >
+          </div>
+
+
+          <div class="auth-heading">
+
+            <div id="headingIcon" class="heading-icon">
+              👋
+            </div>
+
+            <h2 id="authTitle">
+              Selamat datang kembali
+            </h2>
+
+            <p id="authSubtitle">
+              Masuk untuk melanjutkan ke Community Rayy.
+            </p>
+
+          </div>
+
+
+          <!-- MESSAGE -->
+          <div
+            id="message"
+            class="message hidden"
+            role="alert"
+          ></div>
+
+
+          <!-- ================= LOGIN ================= -->
+
+          <form id="loginForm" class="auth-form">
+
+            <div class="field">
+
+              <label for="loginEmail">
+                Email
+              </label>
+
+              <div class="input-wrap">
+
+                <span class="input-icon">✉</span>
+
+                <input
+                  id="loginEmail"
+                  type="email"
+                  placeholder="nama@email.com"
+                  autocomplete="email"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <div class="label-row">
+
+                <label for="loginPassword">
+                  Password
+                </label>
+
+                <button
+                  type="button"
+                  id="forgotPassword"
+                  class="forgot-button"
+                >
+                  Lupa password?
+                </button>
+
+              </div>
+
+              <div class="input-wrap">
+
+                <span class="input-icon">●</span>
+
+                <input
+                  id="loginPassword"
+                  type="password"
+                  placeholder="Masukkan password"
+                  autocomplete="current-password"
+                  required
+                >
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  data-target="loginPassword"
+                  aria-label="Tampilkan password"
+                >
+                  <span>◉</span>
+                </button>
+
+              </div>
+
+            </div>
+
 
             <button
-              type="button"
-              class="show-password"
-              data-target="loginPassword"
-              aria-label="Tampilkan password"
+              id="loginButton"
+              class="primary-button"
+              type="submit"
             >
-              👁
+              <span class="button-text">
+                Masuk ke Community
+              </span>
+
+              <span class="button-arrow">
+                →
+              </span>
+
+              <span class="button-loader"></span>
             </button>
-          </div>
-
-          <button id="loginButton" class="primary-button" type="submit">
-            <span>Masuk</span>
-          </button>
-
-          <button
-            type="button"
-            id="forgotPassword"
-            class="text-button"
-          >
-            Lupa password?
-          </button>
-
-          <div class="divider">
-            <span>atau</span>
-          </div>
-
-          <p class="switch-text">
-            Belum punya akun?
-            <button type="button" id="showRegister">
-              Daftar sekarang
-            </button>
-          </p>
-
-        </form>
 
 
-        <!-- Register -->
-        <form id="registerForm" class="auth-form hidden">
+            <div class="separator">
+              <span>atau</span>
+            </div>
 
-          <label for="registerEmail">
-            Email
-          </label>
 
-          <input
-            id="registerEmail"
-            type="email"
-            placeholder="nama@email.com"
-            autocomplete="email"
-            required
+            <div class="switch">
+
+              <span>
+                Belum punya akun?
+              </span>
+
+              <button
+                type="button"
+                id="showRegister"
+              >
+                Buat akun
+              </button>
+
+            </div>
+
+          </form>
+
+
+          <!-- ================= REGISTER ================= -->
+
+          <form
+            id="registerForm"
+            class="auth-form hidden"
           >
 
-          <label for="registerPassword">
-            Password
-          </label>
+            <div class="field">
 
-          <div class="password-wrapper">
-            <input
-              id="registerPassword"
-              type="password"
-              placeholder="Minimal 6 karakter"
-              autocomplete="new-password"
-              minlength="6"
-              required
-            >
+              <label for="registerEmail">
+                Email
+              </label>
+
+              <div class="input-wrap">
+
+                <span class="input-icon">✉</span>
+
+                <input
+                  id="registerEmail"
+                  type="email"
+                  placeholder="nama@email.com"
+                  autocomplete="email"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="registerPassword">
+                Password
+              </label>
+
+              <div class="input-wrap">
+
+                <span class="input-icon">●</span>
+
+                <input
+                  id="registerPassword"
+                  type="password"
+                  placeholder="Minimal 6 karakter"
+                  minlength="6"
+                  autocomplete="new-password"
+                  required
+                >
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  data-target="registerPassword"
+                  aria-label="Tampilkan password"
+                >
+                  <span>◉</span>
+                </button>
+
+              </div>
+
+              <div class="password-strength">
+
+                <div class="strength-bars">
+
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+
+                </div>
+
+                <span id="strengthText">
+                  Masukkan password
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="registerPasswordConfirm">
+                Ulangi password
+              </label>
+
+              <div class="input-wrap">
+
+                <span class="input-icon">●</span>
+
+                <input
+                  id="registerPasswordConfirm"
+                  type="password"
+                  placeholder="Ketik ulang password"
+                  minlength="6"
+                  autocomplete="new-password"
+                  required
+                >
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  data-target="registerPasswordConfirm"
+                  aria-label="Tampilkan password"
+                >
+                  <span>◉</span>
+                </button>
+
+              </div>
+
+            </div>
+
 
             <button
-              type="button"
-              class="show-password"
-              data-target="registerPassword"
-              aria-label="Tampilkan password"
+              id="registerButton"
+              class="primary-button"
+              type="submit"
             >
-              👁
+              <span class="button-text">
+                Buat akun
+              </span>
+
+              <span class="button-arrow">
+                →
+              </span>
+
+              <span class="button-loader"></span>
             </button>
+
+
+            <p class="privacy-note">
+              📩 Setelah mendaftar, kamu akan menerima
+              email untuk verifikasi akun.
+            </p>
+
+
+            <div class="separator">
+              <span>atau</span>
+            </div>
+
+
+            <div class="switch">
+
+              <span>
+                Sudah punya akun?
+              </span>
+
+              <button
+                type="button"
+                id="showLogin"
+              >
+                Login
+              </button>
+
+            </div>
+
+          </form>
+
+
+          <div class="card-footer">
+            <span>Protected by Supabase</span>
+            <span>•</span>
+            <span>Community Rayy</span>
           </div>
 
-          <label for="registerPasswordConfirm">
-            Ulangi Password
-          </label>
-
-          <div class="password-wrapper">
-            <input
-              id="registerPasswordConfirm"
-              type="password"
-              placeholder="Ulangi password"
-              autocomplete="new-password"
-              minlength="6"
-              required
-            >
-
-            <button
-              type="button"
-              class="show-password"
-              data-target="registerPasswordConfirm"
-              aria-label="Tampilkan password"
-            >
-              👁
-            </button>
-          </div>
-
-          <button id="registerButton" class="primary-button" type="submit">
-            <span>Buat akun</span>
-          </button>
-
-          <p class="terms">
-            Dengan mendaftar, kamu menyetujui penggunaan
-            Community Rayy.
-          </p>
-
-          <div class="divider">
-            <span>atau</span>
-          </div>
-
-          <p class="switch-text">
-            Sudah punya akun?
-            <button type="button" id="showLogin">
-              Login
-            </button>
-          </p>
-
-        </form>
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- ================= DASHBOARD ================= -->
-    <section id="dashboardSection" class="dashboard hidden">
+    <!-- ==================================================
+         DASHBOARD
+    =================================================== -->
+
+    <section
+      id="dashboardSection"
+      class="dashboard hidden"
+    >
 
       <div class="dashboard-container">
 
-        <div class="dashboard-top">
+        <div class="dashboard-nav">
 
-          <div>
-            <span class="eyebrow">
-              COMMUNITY RAYY
+          <div class="dashboard-brand">
+
+            <div class="brand-mark small">
+              R
+            </div>
+
+            <span>
+              Community <b>Rayy</b>
             </span>
 
-            <h1>
-              Dashboard
-            </h1>
-
-            <p>
-              Selamat datang kembali 👋
-            </p>
           </div>
 
-          <button id="logoutButton" class="logout-button">
-            Keluar
+          <button
+            id="logoutButton"
+            class="logout-button"
+          >
+            <span>Keluar</span>
+            <span>↗</span>
           </button>
 
         </div>
 
 
-        <div class="welcome-card">
+        <div class="dashboard-hero">
 
-          <div class="avatar">
-            <span id="avatarLetter">R</span>
-          </div>
+          <div class="hero-copy">
 
-          <div class="welcome-content">
-
-            <span class="small-label">
-              AKUN KAMU
-            </span>
-
-            <h2 id="userEmail">
-              -
-            </h2>
-
-            <div class="account-status">
-              <span></span>
+            <div class="dashboard-badge">
+              <span class="pulse"></span>
               Akun aktif
             </div>
 
+            <p
+              id="dashboardGreeting"
+              class="dashboard-greeting"
+            >
+              Selamat datang
+            </p>
+
+            <h1>
+              Senang melihatmu
+              <span>lagi.</span>
+            </h1>
+
+            <p class="hero-description">
+              Ini adalah ruang pribadi kamu di
+              Community Rayy.
+            </p>
+
+          </div>
+
+
+          <div class="hero-avatar">
+
+            <div class="avatar-ring">
+
+              <div class="avatar">
+                <span id="avatarLetter">R</span>
+              </div>
+
+            </div>
+
+            <div class="avatar-status"></div>
+
           </div>
 
         </div>
 
 
-        <div class="cards-grid">
+        <div class="account-card">
+
+          <div class="account-icon">
+            ✉
+          </div>
+
+          <div class="account-info">
+
+            <span class="account-label">
+              EMAIL AKUN
+            </span>
+
+            <strong id="userEmail">
+              -
+            </strong>
+
+          </div>
+
+          <div class="verified-badge">
+            ✓ Terverifikasi
+          </div>
+
+        </div>
+
+
+        <div class="section-heading">
+
+          <div>
+            <span class="section-eyebrow">
+              EXPLORE
+            </span>
+
+            <h2>
+              Community kamu
+            </h2>
+          </div>
+
+          <span class="coming-soon">
+            More coming soon
+          </span>
+
+        </div>
+
+
+        <div class="feature-grid">
 
           <article class="feature-card">
-            <div class="feature-icon">👤</div>
 
-            <div>
-              <h3>Profile</h3>
-              <p>
-                Informasi akun kamu akan tampil di sini.
-              </p>
+            <div class="feature-card-top">
+
+              <div class="feature-icon purple">
+                ✦
+              </div>
+
+              <span class="feature-arrow">
+                →
+              </span>
+
             </div>
 
-            <span class="arrow">→</span>
+            <h3>
+              Profile
+            </h3>
+
+            <p>
+              Kelola informasi dan tampilan
+              profil kamu.
+            </p>
+
+            <span class="feature-status">
+              Segera hadir
+            </span>
+
           </article>
 
 
           <article class="feature-card">
-            <div class="feature-icon">💬</div>
 
-            <div>
-              <h3>Community</h3>
-              <p>
-                Area komunitas sedang dipersiapkan.
-              </p>
+            <div class="feature-card-top">
+
+              <div class="feature-icon blue">
+                ◇
+              </div>
+
+              <span class="feature-arrow">
+                →
+              </span>
+
             </div>
 
-            <span class="arrow">→</span>
+            <h3>
+              Community
+            </h3>
+
+            <p>
+              Tempat berbagi karya dan ngobrol
+              bersama anggota lainnya.
+            </p>
+
+            <span class="feature-status">
+              Segera hadir
+            </span>
+
           </article>
 
 
           <article class="feature-card">
-            <div class="feature-icon">🚀</div>
 
-            <div>
-              <h3>Projects</h3>
-              <p>
-                Fitur project akan hadir di sini.
-              </p>
+            <div class="feature-card-top">
+
+              <div class="feature-icon pink">
+                ⚡
+              </div>
+
+              <span class="feature-arrow">
+                →
+              </span>
+
             </div>
 
-            <span class="arrow">→</span>
+            <h3>
+              Projects
+            </h3>
+
+            <p>
+              Tampilkan dan temukan berbagai
+              project menarik.
+            </p>
+
+            <span class="feature-status">
+              Segera hadir
+            </span>
+
           </article>
 
         </div>
 
 
-        <div class="info-card">
+        <div class="dashboard-note">
 
-          <div class="info-icon">
+          <div class="note-icon">
             ✨
           </div>
 
           <div>
-            <h3>Community Rayy</h3>
+
+            <strong>
+              Community Rayy masih berkembang.
+            </strong>
+
             <p>
-              Tempat untuk mengembangkan project,
-              berbagi karya, dan membangun komunitas.
+              Fitur baru akan ditambahkan sedikit
+              demi sedikit. Ini baru awal.
             </p>
+
           </div>
 
         </div>
+
+
+        <footer class="dashboard-footer">
+
+          <span>
+            © 2026 Community Rayy
+          </span>
+
+          <span>
+            Made with ♥ by Rayy
+          </span>
+
+        </footer>
 
       </div>
 
@@ -335,9 +701,12 @@
   </main>
 
 
-  <footer>
+  <footer
+    id="authFooter"
+    class="auth-footer"
+  >
     <span>© 2026 Community Rayy</span>
-    <span>Made with ♥ by Rayy</span>
+    <span>Built for the community.</span>
   </footer>
 
 
