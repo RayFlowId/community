@@ -2404,4 +2404,24 @@ select:focus-visible{
     transition-duration:.01ms!important;
   }
 }
+.profile-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-card .feature-icon {
+  display: grid;
+  place-items: center;
+}
+
+.profile-card:hover {
+  transform: translateY(-3px);
+  border-color: #444 !important;
+}
+
+.profile-card .feature-status {
+  color: #fff;
+}
 
