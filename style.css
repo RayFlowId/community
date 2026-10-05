@@ -2425,3 +2425,23 @@ select:focus-visible{
   color: #fff;
 }
 
+.project-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: #444 !important;
+}
+
+.project-card .feature-icon {
+  display: grid;
+  place-items: center;
+}
+
+.project-card .feature-status {
+  color: #fff;
+}
