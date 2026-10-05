@@ -2130,3 +2130,278 @@ button[type="submit"]:hover,
   }
 }
 
+
+/* ============================================================
+   COMMUNITY RAYY — MONOCHROME DARK OVERRIDE
+   Black + white only. Supabase/auth logic untouched.
+   ============================================================ */
+
+:root{
+  --bg:#050505;
+  --bg-2:#0a0a0a;
+  --panel:#101010;
+  --panel-2:#151515;
+  --line:#242424;
+  --line-strong:#333;
+  --text:#fafafa;
+  --muted:#8c8c8c;
+  --accent:#ffffff;
+  --accent-2:#d9d9d9;
+  --success:#d8d8d8;
+  --danger:#f0f0f0;
+  --shadow:0 28px 80px rgba(0,0,0,.52);
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% -15%,rgba(255,255,255,.055),transparent 34%),
+    linear-gradient(180deg,#050505 0%,#090909 52%,#050505 100%);
+}
+
+body::before,
+body::after{
+  display:none;
+}
+
+/* Global surfaces */
+.card,
+.auth-card,
+.dashboard-card,
+.feature-card,
+.modal-content,
+.panel{
+  background:rgba(14,14,14,.92)!important;
+  border:1px solid #242424!important;
+  box-shadow:var(--shadow)!important;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+
+/* Navigation */
+header,
+.navbar,
+.topbar{
+  background:rgba(5,5,5,.84)!important;
+  border-bottom:1px solid #1c1c1c!important;
+}
+
+/* Brand */
+.logo,
+.brand,
+.brand-logo{
+  filter:none!important;
+}
+
+.logo:hover,
+.brand:hover,
+.brand-logo:hover{
+  transform:none!important;
+  filter:none!important;
+}
+
+.gradient,
+.gradient-text{
+  background:linear-gradient(90deg,#fff,#aaa);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* Headings */
+h1,h2,h3,h4{
+  color:#fff!important;
+}
+
+/* Inputs */
+input,
+textarea,
+select{
+  color:#f5f5f5!important;
+  background:#0b0b0b!important;
+  border:1px solid #292929!important;
+  box-shadow:none!important;
+}
+
+input:hover,
+textarea:hover,
+select:hover{
+  border-color:#3a3a3a!important;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#666!important;
+  background:#0d0d0d!important;
+  box-shadow:0 0 0 3px rgba(255,255,255,.055)!important;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#5f5f5f!important;
+}
+
+/* Buttons */
+button,
+.btn,
+.button{
+  border:1px solid #2a2a2a!important;
+  background:#151515!important;
+  color:#f5f5f5!important;
+  box-shadow:none!important;
+}
+
+button:hover,
+.btn:hover,
+.button:hover{
+  background:#1d1d1d!important;
+  border-color:#414141!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.28)!important;
+}
+
+button[type="submit"],
+.primary,
+.btn-primary{
+  color:#050505!important;
+  background:#fff!important;
+  border-color:#fff!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.32)!important;
+}
+
+button[type="submit"]:hover,
+.primary:hover,
+.btn-primary:hover{
+  background:#e8e8e8!important;
+  border-color:#e8e8e8!important;
+  filter:none!important;
+  box-shadow:0 14px 32px rgba(0,0,0,.42)!important;
+}
+
+/* Tabs */
+.auth-tabs,
+.tabs{
+  background:#0a0a0a!important;
+  border:1px solid #242424!important;
+}
+
+.auth-tabs button,
+.tabs button{
+  color:#777!important;
+}
+
+.auth-tabs button.active,
+.tabs button.active{
+  color:#fff!important;
+  background:#1b1b1b!important;
+  box-shadow:inset 0 0 0 1px #303030!important;
+}
+
+/* Cards */
+.feature-card,
+.dashboard-card{
+  transition:transform .22s ease,border-color .22s ease,background .22s ease!important;
+}
+
+.feature-card:hover,
+.dashboard-card:hover{
+  transform:translateY(-2px);
+  background:#131313!important;
+  border-color:#363636!important;
+}
+
+/* Messages */
+.error,
+.error-message{
+  color:#eee!important;
+  background:#151515!important;
+  border:1px solid #383838!important;
+}
+
+.success,
+.success-message{
+  color:#eee!important;
+  background:#151515!important;
+  border:1px solid #383838!important;
+}
+
+/* Empty states */
+.empty,
+.coming-soon{
+  background:#0c0c0c!important;
+  border:1px dashed #303030!important;
+  color:#858585!important;
+}
+
+/* Modal */
+.modal{
+  background:rgba(0,0,0,.78)!important;
+  backdrop-filter:blur(14px);
+}
+
+/* Links */
+a{
+  color:#d8d8d8;
+}
+
+a:hover{
+  color:#fff;
+}
+
+/* Focus accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible{
+  outline:2px solid #fff!important;
+  outline-offset:3px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{
+  width:8px;
+  height:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#070707;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#2b2b2b;
+  border:2px solid #070707;
+  border-radius:999px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#454545;
+}
+
+::selection{
+  background:#fff;
+  color:#000;
+}
+
+/* Mobile */
+@media(max-width:700px){
+  .auth-card,
+  .card,
+  .dashboard-card{
+    border-radius:18px!important;
+  }
+
+  .feature-grid,
+  .dashboard-grid,
+  .features{
+    grid-template-columns:1fr!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
+
