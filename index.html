@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#08090d">
-  <meta name="description" content="Community Rayy — tempat berkumpul, berbagi, dan berkembang bersama.">
+  <meta name="theme-color" content="#050505">
+  <meta
+    name="description"
+    content="Community Rayy — tempat berkumpul, berbagi, dan berkembang bersama."
+  >
 
   <title>Community Rayy</title>
 
@@ -22,11 +25,8 @@
 
 <body>
 
-  <!-- Background -->
+  <!-- BACKGROUND -->
   <div class="background">
-    <div class="aurora aurora-one"></div>
-    <div class="aurora aurora-two"></div>
-    <div class="aurora aurora-three"></div>
     <div class="grid"></div>
     <div class="noise"></div>
   </div>
@@ -66,7 +66,7 @@
 
       <div class="auth-layout">
 
-        <!-- LEFT / INTRO -->
+        <!-- INTRO -->
         <div class="intro">
 
           <div class="intro-badge">
@@ -88,6 +88,7 @@
 
             <div class="point">
               <div class="point-icon">✦</div>
+
               <div>
                 <strong>Simple & nyaman</strong>
                 <span>Dirancang supaya enak digunakan.</span>
@@ -96,6 +97,7 @@
 
             <div class="point">
               <div class="point-icon">⚡</div>
+
               <div>
                 <strong>Cepat</strong>
                 <span>Login dan akses akun dengan mudah.</span>
@@ -104,6 +106,7 @@
 
             <div class="point">
               <div class="point-icon">🔒</div>
+
               <div>
                 <strong>Aman</strong>
                 <span>Authentication ditangani oleh Supabase.</span>
@@ -157,8 +160,7 @@
           ></div>
 
 
-          <!-- ================= LOGIN ================= -->
-
+          <!-- LOGIN -->
           <form id="loginForm" class="auth-form">
 
             <div class="field">
@@ -202,6 +204,7 @@
 
               </div>
 
+
               <div class="input-wrap">
 
                 <span class="input-icon">●</span>
@@ -233,6 +236,7 @@
               class="primary-button"
               type="submit"
             >
+
               <span class="button-text">
                 Masuk ke Community
               </span>
@@ -242,6 +246,7 @@
               </span>
 
               <span class="button-loader"></span>
+
             </button>
 
 
@@ -268,8 +273,7 @@
           </form>
 
 
-          <!-- ================= REGISTER ================= -->
-
+          <!-- REGISTER -->
           <form
             id="registerForm"
             class="auth-form hidden"
@@ -328,15 +332,14 @@
 
               </div>
 
+
               <div class="password-strength">
 
                 <div class="strength-bars">
-
                   <span></span>
                   <span></span>
                   <span></span>
                   <span></span>
-
                 </div>
 
                 <span id="strengthText">
@@ -386,6 +389,7 @@
               class="primary-button"
               type="submit"
             >
+
               <span class="button-text">
                 Buat akun
               </span>
@@ -395,6 +399,7 @@
               </span>
 
               <span class="button-loader"></span>
+
             </button>
 
 
@@ -451,6 +456,7 @@
 
       <div class="dashboard-container">
 
+        <!-- DASHBOARD NAV -->
         <div class="dashboard-nav">
 
           <div class="dashboard-brand">
@@ -465,6 +471,7 @@
 
           </div>
 
+
           <button
             id="logoutButton"
             class="logout-button"
@@ -476,6 +483,7 @@
         </div>
 
 
+        <!-- HERO -->
         <div class="dashboard-hero">
 
           <div class="hero-copy">
@@ -522,6 +530,7 @@
         </div>
 
 
+        <!-- ACCOUNT -->
         <div class="account-card">
 
           <div class="account-icon">
@@ -547,9 +556,11 @@
         </div>
 
 
+        <!-- EXPLORE -->
         <div class="section-heading">
 
           <div>
+
             <span class="section-eyebrow">
               EXPLORE
             </span>
@@ -557,122 +568,147 @@
             <h2>
               Community kamu
             </h2>
+
           </div>
 
           <span class="coming-soon">
-            More coming soon
+            3 pilihan untuk kamu
           </span>
 
         </div>
 
 
-        <a
-  class="feature-card profile-card"
-  href="https://portofolio.rayyy.my.id"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <div class="feature-card-top">
-    <div class="feature-icon">
-      ↗
-    </div>
-
-    <span class="feature-arrow">
-      →
-    </span>
-  </div>
-
-  <h3>
-    Profile
-  </h3>
-
-  <p>
-    Lihat profile, karya, dan project
-    Rayy di portfolio.
-  </p>
-
-  <span class="feature-status">
-    Lihat Portfolio
-  </span>
-</a>
+        <!-- FEATURE CARDS -->
+        <div class="feature-grid">
 
 
+          <!-- PROFILE -->
           <a
-  class="feature-card community-card"
-  href="https://discord.gg/frY9mkwgz"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <div class="feature-card-top">
-    <div class="feature-icon">
-      💬
-    </div>
+            class="feature-card feature-link"
+            href="https://portofolio.rayyy.my.id"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
 
-    <span class="feature-arrow">
-      →
-    </span>
-  </div>
+            <div class="feature-card-top">
 
-  <h3>
-    Community
-  </h3>
+              <div class="feature-icon">
+                ↗
+              </div>
 
-  <p>
-    Gabung Discord dan ngobrol
-    bareng komunitas Rayy.
-  </p>
+              <span class="feature-arrow">
+                →
+              </span>
 
-  <span class="feature-status">
-    Gabung Discord →
-  </span>
-</a>
+            </div>
 
+            <h3>
+              Profile
+            </h3>
+
+            <p>
+              Lihat profile, karya, dan
+              portfolio Rayy.
+            </p>
+
+            <span class="feature-status">
+              Lihat Portfolio →
+            </span>
+
+          </a>
+
+
+          <!-- COMMUNITY -->
           <a
-  class="feature-card project-card"
-  href="https://rayyy.my.id"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <div class="feature-card-top">
-    <div class="feature-icon">
-      ↗
-    </div>
+            class="feature-card feature-link"
+            href="https://discord.gg/frY9mkwgz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
 
-    <span class="feature-arrow">
-      →
-    </span>
-  </div>
+            <div class="feature-card-top">
 
-  <h3>
-    r, rayy online
-  </h3>
+              <div class="feature-icon">
+                #
+              </div>
 
-  <p>
-    Website downloader TikTok sederhana
-    dan modern buatan Rayy.
-  </p>
+              <span class="feature-arrow">
+                →
+              </span>
 
-  <span class="feature-status">
-    Kunjungi Project →
-  </span>
-</a>
+            </div>
+
+            <h3>
+              Community
+            </h3>
+
+            <p>
+              Bergabung dan ngobrol bersama
+              komunitas Rayy di Discord.
+            </p>
+
+            <span class="feature-status">
+              Gabung Discord →
+            </span>
+
+          </a>
 
 
+          <!-- PROJECTS -->
+          <a
+            class="feature-card feature-link"
+            href="https://rayyy.my.id"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <div class="feature-card-top">
+
+              <div class="feature-icon">
+                ↗
+              </div>
+
+              <span class="feature-arrow">
+                →
+              </span>
+
+            </div>
+
+            <h3>
+              Projects
+            </h3>
+
+            <p>
+              Lihat project dan website
+              yang dibuat oleh Rayy.
+            </p>
+
+            <span class="feature-status">
+              Lihat Project →
+            </span>
+
+          </a>
+
+
+        </div>
+
+
+        <!-- NOTE -->
         <div class="dashboard-note">
 
           <div class="note-icon">
-            ✨
+            ✦
           </div>
 
           <div>
 
             <strong>
-              Community Rayy masih berkembang.
+              Community Rayy terus berkembang.
             </strong>
 
             <p>
-              Fitur baru akan ditambahkan sedikit
-              demi sedikit. Ini baru awal.
+              Profile, community, dan project
+              sekarang sudah bisa kamu akses.
             </p>
 
           </div>
@@ -680,6 +716,7 @@
         </div>
 
 
+        <!-- FOOTER -->
         <footer class="dashboard-footer">
 
           <span>
@@ -699,6 +736,7 @@
   </main>
 
 
+  <!-- AUTH FOOTER -->
   <footer
     id="authFooter"
     class="auth-footer"
