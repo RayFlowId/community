@@ -2445,3 +2445,20 @@ select:focus-visible{
 .project-card .feature-status {
   color: #fff;
 }
+
+.community-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.community-card:hover {
+  transform: translateY(-3px);
+  border-color: #444 !important;
+}
+
+.community-card .feature-icon {
+  display: grid;
+  place-items: center;
+}
