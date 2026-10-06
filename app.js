@@ -239,6 +239,9 @@ function showRegisterForm() {
 
 function showDashboard(user) {
 
+  document.body.classList.add("dashboard-active");
+  document.body.classList.remove("auth-active");
+
   authSection.classList.add(
     "hidden"
   );
@@ -279,6 +282,9 @@ function showDashboard(user) {
 ===================================================== */
 
 function showAuth() {
+
+  document.body.classList.add("auth-active");
+  document.body.classList.remove("dashboard-active");
 
   dashboardSection.classList.add(
     "hidden"

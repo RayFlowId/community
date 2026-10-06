@@ -3073,7 +3073,7 @@ select:focus-visible{
 /* The dashboard already has its own navigation.
    Hide the global auth navbar once the dashboard is visible,
    preventing the duplicated "Community Rayy" bars. */
-body:has(#dashboardSection:not(.hidden)) > .navbar {
+body.dashboard-active > .navbar {
   display: none !important;
 }
 
@@ -3128,5 +3128,23 @@ body:has(#dashboardSection:not(.hidden)) > .navbar {
 
   .dashboard-hero {
     padding-top: 34px;
+  }
+}
+
+
+/* V7 — guaranteed dashboard header cleanup */
+body.dashboard-active > .navbar {
+  display: none !important;
+}
+
+body.dashboard-active .dashboard {
+  padding-top: 0 !important;
+}
+
+@media (max-width: 700px) {
+  body.dashboard-active .dashboard-nav {
+    height: 68px;
+    margin: 0;
+    padding: 0;
   }
 }
