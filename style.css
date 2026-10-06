@@ -2798,3 +2798,270 @@ select:focus-visible{
     margin-top: 32px;
   }
 }
+
+
+/* =========================================================
+   RAYY COMMUNITY V3 — HOMEPAGE EXTENSION
+   ========================================================= */
+
+.featured-project {
+  position: relative;
+  min-height: 270px;
+  margin-top: 14px;
+  padding: 32px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border: 1px solid #292929;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 82% 50%, rgba(255,255,255,.055), transparent 30%),
+    linear-gradient(120deg, #101010, #090909);
+}
+
+.featured-project::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 65%, rgba(255,255,255,.018) 100%);
+}
+
+.featured-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 590px;
+}
+
+.featured-copy h2 {
+  margin-top: 9px;
+  color: #f1f1f1;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -2px;
+}
+
+.featured-copy p {
+  max-width: 500px;
+  margin-top: 11px;
+  color: #666;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.featured-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 11px 14px;
+  color: #000;
+  font-size: 9px;
+  font-weight: 800;
+  border-radius: 9px;
+  background: #fff;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.featured-button:hover {
+  transform: translateY(-2px);
+  background: #e8e8e8;
+}
+
+.featured-mark {
+  position: relative;
+  z-index: 1;
+  width: 220px;
+  height: 220px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.featured-mark span {
+  position: relative;
+  z-index: 3;
+  width: 105px;
+  height: 105px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 42px;
+  font-weight: 900;
+  border: 1px solid #333;
+  border-radius: 50%;
+  background: #0b0b0b;
+  box-shadow: 0 0 55px rgba(255,255,255,.055);
+}
+
+.featured-mark i {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #1f1f1f;
+  border-radius: 50%;
+}
+
+.featured-mark i:nth-child(2) {
+  transform: rotate(30deg) scaleX(.7);
+}
+
+.featured-mark i:nth-child(3) {
+  transform: rotate(-30deg) scaleX(.7);
+}
+
+.featured-mark i:nth-child(4) {
+  transform: scale(.72);
+}
+
+.rayy-lower-grid {
+  display: grid;
+  grid-template-columns: 1.4fr .6fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.activity-panel,
+.links-panel {
+  padding: 23px;
+  border: 1px solid #252525;
+  border-radius: 17px;
+  background: #0b0b0b;
+}
+
+.lower-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.lower-heading h2 {
+  margin-top: 7px;
+  color: #e8e8e8;
+  font-size: 19px;
+  letter-spacing: -.7px;
+}
+
+.activity-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  color: #666;
+  font-size: 7px;
+  letter-spacing: 1px;
+  border: 1px solid #222;
+  border-radius: 999px;
+}
+
+.activity-live b {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  animation: rayyLive 1.8s ease-in-out infinite;
+}
+
+@keyframes rayyLive {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+
+.activity-list {
+  margin-top: 20px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 0;
+  border-top: 1px solid #191919;
+}
+
+.activity-dot {
+  width: 7px;
+  height: 7px;
+  margin-top: 4px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #777;
+}
+
+.activity-item strong {
+  display: block;
+  color: #aaa;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.activity-item small {
+  display: block;
+  margin-top: 4px;
+  color: #484848;
+  font-size: 7px;
+}
+
+.quick-links {
+  margin-top: 18px;
+}
+
+.quick-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  color: #858585;
+  font-size: 9px;
+  text-decoration: none;
+  border-top: 1px solid #191919;
+  transition: color .2s ease, padding .2s ease;
+}
+
+.quick-links a:hover {
+  padding-left: 5px;
+  color: #fff;
+}
+
+.quick-links b {
+  color: #555;
+  font-weight: 400;
+}
+
+@media (max-width: 760px) {
+  .featured-project {
+    min-height: 300px;
+    padding: 25px;
+  }
+
+  .featured-mark {
+    position: absolute;
+    right: -35px;
+    bottom: -35px;
+    opacity: .6;
+    transform: scale(.85);
+  }
+
+  .rayy-lower-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .featured-project {
+    padding: 22px;
+  }
+
+  .featured-copy h2 {
+    font-size: 30px;
+  }
+
+  .featured-mark {
+    right: -60px;
+    bottom: -55px;
+  }
+}
+\n\n/* RAYY PERSONAL STORY — V4 */\n.about-rayy{display:grid;grid-template-columns:1.25fr .75fr;gap:35px;margin-top:72px;padding:30px 0 5px}.about-copy h2{margin-top:10px;color:#eee;font-size:clamp(28px,4vw,42px);line-height:1.05;letter-spacing:-1.8px}.about-copy h2 span{color:#666}.about-copy p{max-width:610px;margin-top:17px;color:#666;font-size:11px;line-height:1.9}.interest-stack{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:start}.interest-item{display:flex;align-items:center;gap:10px;min-height:72px;padding:12px;border:1px solid #222;border-radius:13px;background:#0b0b0b;transition:transform .2s ease,border-color .2s ease,background .2s ease}.interest-item:hover{transform:translateY(-3px);border-color:#3a3a3a;background:#111}.interest-icon{width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto;color:#ddd;font-size:11px;border:1px solid #292929;border-radius:9px;background:#151515}.interest-item div{display:flex;flex-direction:column;gap:4px}.interest-item strong{color:#999;font-size:8px;letter-spacing:1.5px}.interest-item small{color:#4f4f4f;font-size:7px}.beyond-screen{margin-top:14px;padding:29px 30px;border:1px solid #242424;border-radius:17px;background:radial-gradient(circle at 90% 20%,rgba(255,255,255,.035),transparent 30%),#0b0b0b}.beyond-screen h2{margin-top:9px;color:#e9e9e9;font-size:23px;letter-spacing:-1px}.beyond-screen p{max-width:780px;margin-top:11px;color:#626262;font-size:10px;line-height:1.85}@media(max-width:760px){.about-rayy{grid-template-columns:1fr;margin-top:50px}}@media(max-width:500px){.interest-stack{grid-template-columns:1fr}.beyond-screen{padding:23px}}\n
