@@ -1053,3 +1053,19 @@ function getReadableError(error) {
 updateGreeting();
 
 checkSession();
+
+
+/* =====================================================
+   RAYY INTRO — always plays on each page load
+===================================================== */
+(function runRayyIntro() {
+  const intro = document.getElementById("rayyIntro");
+  if (!intro) return;
+  document.body.classList.add("intro-running");
+  window.setTimeout(() => {
+    intro.classList.add("intro-exit");
+    document.body.classList.remove("intro-running");
+    window.setTimeout(() => intro.remove(), 900);
+  }, 4300);
+})();
+
