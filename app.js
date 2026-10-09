@@ -1067,6 +1067,17 @@ checkSession();
   const silentButton = document.getElementById("rayySilentStart");
   if (!intro || !video || !gate) return;
 
+  // Tampilkan intro + layar izin hanya sekali per browser.
+  // Setelah pengunjung memilih, refresh berikutnya langsung ke dashboard.
+  const INTRO_SEEN_KEY = "rayyCommunityIntroSeen_v1";
+  try {
+    if (localStorage.getItem(INTRO_SEEN_KEY) === "1") {
+      intro.remove();
+      document.body.classList.remove("intro-running");
+      return;
+    }
+  } catch (_) {}
+
   document.body.classList.add("intro-running");
   let finished = false;
   let started = false;
@@ -1086,6 +1097,7 @@ checkSession();
   const startIntro = async (withSound) => {
     if (started || finished) return;
     started = true;
+    try { localStorage.setItem(INTRO_SEEN_KEY, "1"); } catch (_) {}
     gate.classList.add("gate-exit");
     video.currentTime = 0;
     video.muted = true;
