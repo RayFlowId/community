@@ -1056,52 +1056,70 @@ checkSession();
 
 
 /* =====================================================
-   RAYY INTRO — play the user's original video on every page load
+   RAYY INTRO — clean cinematic autoplay, no visible buttons
+   Try sound first; if the mobile browser blocks it, fall back to muted.
+   The first user interaction anywhere on the page attempts to enable audio.
 ===================================================== */
 (function runRayyIntroVideo() {
   const intro = document.getElementById("rayyIntro");
   const video = document.getElementById("rayyIntroVideo");
-  const skip = document.getElementById("rayyIntroSkip");
   if (!intro || !video) return;
 
   document.body.classList.add("intro-running");
   let finished = false;
+  let audioTriedFromGesture = false;
+  let safetyTimer;
+
   const finishIntro = () => {
     if (finished) return;
     finished = true;
+    window.clearTimeout(safetyTimer);
     intro.classList.add("intro-exit");
     document.body.classList.remove("intro-running");
     window.setTimeout(() => intro.remove(), 700);
   };
 
   video.addEventListener("ended", finishIntro, { once: true });
-  video.addEventListener("error", () => {
-    // Keep the page accessible if the video file wasn't uploaded correctly.
-    window.setTimeout(finishIntro, 1500);
-  }, { once: true });
-  if (skip) skip.addEventListener("click", finishIntro);
+  video.addEventListener("error", finishIntro, { once: true });
+  safetyTimer = window.setTimeout(finishIntro, 20000);
 
-  // Safety timeout: if mobile browser never fires `ended`, do not leave a blank page.
-  const safetyTimer = window.setTimeout(finishIntro, 14000);
-  const originalFinish = finishIntro;
-  // Keep finish idempotent and clear the timeout whenever intro ends/skips.
-  const finish = () => { window.clearTimeout(safetyTimer); originalFinish(); };
-  video.removeEventListener("ended", finishIntro);
-  video.addEventListener("ended", finish, { once: true });
-  if (skip) {
-    skip.removeEventListener("click", finishIntro);
-    skip.addEventListener("click", finish);
-  }
-  video.addEventListener("error", finish, { once: true });
-
-  const playAttempt = video.play();
-  if (playAttempt && typeof playAttempt.catch === "function") {
-    playAttempt.catch(() => {
-      // If autoplay is blocked, keep the intro layer visible and allow a tap to start.
-      video.controls = true;
-      video.setAttribute("controls", "controls");
-      if (skip) skip.style.display = "block";
+  // No visible sound/skip controls. Try autoplay with audio; on browser policy
+  // rejection, play muted so the intro still works seamlessly on mobile.
+  video.muted = false;
+  video.volume = 1;
+  let attempt = video.play();
+  if (attempt && typeof attempt.catch === "function") {
+    attempt.catch(() => {
+      video.muted = true;
+      const mutedAttempt = video.play();
+      if (mutedAttempt && typeof mutedAttempt.catch === "function") {
+        mutedAttempt.catch(() => {
+          // Some browsers defer playback until the next user gesture.
+          const startOnGesture = () => {
+            video.play().catch(() => {});
+            window.removeEventListener("pointerdown", startOnGesture, true);
+            window.removeEventListener("touchstart", startOnGesture, true);
+          };
+          window.addEventListener("pointerdown", startOnGesture, true);
+          window.addEventListener("touchstart", startOnGesture, true);
+        });
+      }
     });
   }
-})();
 
+  // If autoplay was muted by policy, use the first tap anywhere to enable sound.
+  const enableAudioOnInteraction = () => {
+    if (finished || audioTriedFromGesture || !video.isConnected) return;
+    audioTriedFromGesture = true;
+    video.muted = false;
+    video.volume = 1;
+    const playResult = video.play();
+    if (playResult && typeof playResult.catch === "function") {
+      playResult.catch(() => { video.muted = true; });
+    }
+    window.removeEventListener("pointerdown", enableAudioOnInteraction, true);
+    window.removeEventListener("touchstart", enableAudioOnInteraction, true);
+  };
+  window.addEventListener("pointerdown", enableAudioOnInteraction, true);
+  window.addEventListener("touchstart", enableAudioOnInteraction, true);
+})();

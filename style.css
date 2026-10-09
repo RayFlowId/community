@@ -3250,3 +3250,18 @@ html, body { min-height: 100%; }
 @media (max-width: 600px) {
   #rayyIntro .rayy-intro-video { object-fit: contain !important; }
 }
+
+
+/* SOUND CONTROL — mobile browsers require a user tap before audio can play */
+#rayyIntro .rayy-intro-sound {
+  position: absolute !important; z-index: 3 !important;
+  left: max(14px, env(safe-area-inset-left)) !important;
+  bottom: max(14px, env(safe-area-inset-bottom)) !important;
+  border: 1px solid rgba(255,255,255,.42); border-radius: 4px;
+  background: rgba(0,0,0,.62); color: #fff; padding: 11px 14px;
+  font: 600 11px/1.2 Arial, sans-serif; letter-spacing: .08em;
+  cursor: pointer; backdrop-filter: blur(8px);
+}
+#rayyIntro .rayy-intro-sound:hover { background: rgba(255,255,255,.14); }
+#rayyIntro .rayy-intro-sound.sound-enabled { display: none !important; }
+@media (max-width: 600px) { #rayyIntro .rayy-intro-sound { font-size: 10px; padding: 10px 11px; } }
