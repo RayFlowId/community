@@ -22,22 +22,12 @@
 
 <body>
 
-  <!-- RAYY CINEMATIC INTRO -->
-  <div id="rayyIntro" class="rayy-intro" role="status" aria-label="Rayy intro">
-    <div class="intro-scanlines"></div>
-    <div class="intro-frame intro-frame-left" aria-hidden="true"><span>R</span></div>
-    <div class="intro-frame intro-frame-right" aria-hidden="true"><span>R</span></div>
-    <div class="intro-cross intro-cross-one" aria-hidden="true">+</div>
-    <div class="intro-cross intro-cross-two" aria-hidden="true">+</div>
-    <div class="intro-content">
-      <p class="intro-overline">PERSONAL COMMUNITY / EST. 2026</p>
-      <div class="intro-word intro-word-welcome" data-text="WELCOME">WELCOME</div>
-      <div class="intro-word intro-word-rayy" data-text="RAYY">RAYY</div>
-      <div class="intro-progress"><span></span></div>
-      <p class="intro-status"><span class="intro-status-dot"></span><span>INITIALIZING SYSTEM...</span></p>
-    </div>
-    <div class="intro-corner intro-corner-tl">CR_001</div>
-    <div class="intro-corner intro-corner-br">LOADING EXPERIENCE <span>///</span></div>
+  <!-- RAYY INTRO VIDEO: memakai video asli yang dikirim Rayy -->
+  <div id="rayyIntro" class="rayy-intro" aria-label="Rayy intro video">
+    <video id="rayyIntroVideo" class="rayy-intro-video" autoplay muted playsinline preload="auto">
+      <source src="rayy-intro.mp4" type="video/mp4">
+    </video>
+    <button id="rayyIntroSkip" class="rayy-intro-skip" type="button" aria-label="Lewati intro">SKIP INTRO ↗</button>
   </div>
 
   <!-- Background -->

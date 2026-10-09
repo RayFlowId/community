@@ -1056,16 +1056,38 @@ checkSession();
 
 
 /* =====================================================
-   RAYY INTRO — always plays on each page load
+   RAYY INTRO — play the user's original video on every page load
 ===================================================== */
-(function runRayyIntro() {
+(function runRayyIntroVideo() {
   const intro = document.getElementById("rayyIntro");
-  if (!intro) return;
+  const video = document.getElementById("rayyIntroVideo");
+  const skip = document.getElementById("rayyIntroSkip");
+  if (!intro || !video) return;
+
   document.body.classList.add("intro-running");
-  window.setTimeout(() => {
+  let finished = false;
+  const finishIntro = () => {
+    if (finished) return;
+    finished = true;
     intro.classList.add("intro-exit");
     document.body.classList.remove("intro-running");
-    window.setTimeout(() => intro.remove(), 900);
-  }, 4300);
+    window.setTimeout(() => intro.remove(), 700);
+  };
+
+  video.addEventListener("ended", finishIntro, { once: true });
+  video.addEventListener("error", () => {
+    // Keep the page accessible if the video file wasn't uploaded correctly.
+    window.setTimeout(finishIntro, 1500);
+  }, { once: true });
+  if (skip) skip.addEventListener("click", finishIntro);
+
+  const playAttempt = video.play();
+  if (playAttempt && typeof playAttempt.catch === "function") {
+    playAttempt.catch(() => {
+      // Autoplay may be blocked by the browser; show controls so the user can start it.
+      video.controls = true;
+      if (skip) skip.style.display = "block";
+    });
+  }
 })();
 
