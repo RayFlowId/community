@@ -3220,3 +3220,33 @@ body.intro-running { overflow: hidden !important; }
   .rayy-intro-video { object-fit: contain; }
   .rayy-intro-skip { font-size: 9px; padding: 9px 11px; }
 }
+
+
+/* HOTFIX MOBILE: video intro harus benar-benar memenuhi viewport, tanpa layer intro lama */
+html, body { min-height: 100%; }
+#rayyIntro.rayy-intro {
+  position: fixed !important; inset: 0 !important;
+  width: 100vw !important; height: 100vh !important; height: 100dvh !important;
+  margin: 0 !important; padding: 0 !important;
+  display: block !important; overflow: hidden !important;
+  background: #000 !important; z-index: 2147483647 !important;
+  isolation: isolate !important;
+}
+#rayyIntro.rayy-intro::before, #rayyIntro.rayy-intro::after { display: none !important; content: none !important; }
+#rayyIntro .rayy-intro-video {
+  position: absolute !important; inset: 0 !important;
+  display: block !important; width: 100% !important; max-width: none !important;
+  height: 100% !important; max-height: none !important;
+  margin: 0 !important; padding: 0 !important; border: 0 !important;
+  object-fit: contain !important; object-position: center center !important;
+  background: #000 !important; z-index: 1 !important;
+}
+#rayyIntro .rayy-intro-skip {
+  position: absolute !important; z-index: 2 !important;
+  right: max(14px, env(safe-area-inset-right)) !important;
+  bottom: max(14px, env(safe-area-inset-bottom)) !important;
+}
+#rayyIntro.intro-exit { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+@media (max-width: 600px) {
+  #rayyIntro .rayy-intro-video { object-fit: contain !important; }
+}

@@ -1081,11 +1081,25 @@ checkSession();
   }, { once: true });
   if (skip) skip.addEventListener("click", finishIntro);
 
+  // Safety timeout: if mobile browser never fires `ended`, do not leave a blank page.
+  const safetyTimer = window.setTimeout(finishIntro, 14000);
+  const originalFinish = finishIntro;
+  // Keep finish idempotent and clear the timeout whenever intro ends/skips.
+  const finish = () => { window.clearTimeout(safetyTimer); originalFinish(); };
+  video.removeEventListener("ended", finishIntro);
+  video.addEventListener("ended", finish, { once: true });
+  if (skip) {
+    skip.removeEventListener("click", finishIntro);
+    skip.addEventListener("click", finish);
+  }
+  video.addEventListener("error", finish, { once: true });
+
   const playAttempt = video.play();
   if (playAttempt && typeof playAttempt.catch === "function") {
     playAttempt.catch(() => {
-      // Autoplay may be blocked by the browser; show controls so the user can start it.
+      // If autoplay is blocked, keep the intro layer visible and allow a tap to start.
       video.controls = true;
+      video.setAttribute("controls", "controls");
       if (skip) skip.style.display = "block";
     });
   }
