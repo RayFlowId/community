@@ -1056,88 +1056,74 @@ checkSession();
 
 
 /* =====================================================
-   RAYY INTRO — separate silent video + MP3 soundtrack
-   Video autoplays muted for mobile compatibility; soundtrack is
-   attempted automatically and retried after the first user gesture.
+   RAYY INTRO — explicit user consent starts video + separate MP3
 ===================================================== */
 (function runRayyIntroVideo() {
   const intro = document.getElementById("rayyIntro");
   const video = document.getElementById("rayyIntroVideo");
   const audio = document.getElementById("rayyIntroAudio");
-  if (!intro || !video) return;
+  const gate = document.getElementById("rayyAudioGate");
+  const allowButton = document.getElementById("rayyAllowAudio");
+  const silentButton = document.getElementById("rayySilentStart");
+  if (!intro || !video || !gate) return;
 
   document.body.classList.add("intro-running");
   let finished = false;
-  let audioStarted = false;
+  let started = false;
   let safetyTimer;
 
   const finishIntro = () => {
     if (finished) return;
     finished = true;
     window.clearTimeout(safetyTimer);
-    if (audio) {
-      audio.pause();
-      try { audio.currentTime = 0; } catch (_) {}
-    }
+    if (audio) { audio.pause(); try { audio.currentTime = 0; } catch (_) {} }
+    video.pause();
     intro.classList.add("intro-exit");
     document.body.classList.remove("intro-running");
     window.setTimeout(() => intro.remove(), 700);
   };
 
-  const startAudio = () => {
-    if (!audio || finished || audioStarted) return;
-    // Keep the separate MP3 aligned with the currently playing video.
-    try {
-      audio.currentTime = video.currentTime || 0;
-    } catch (_) {}
-    const result = audio.play();
-    if (result && typeof result.then === "function") {
-      result.then(() => {
-        audioStarted = true;
-      }).catch(() => {
-        // Mobile browsers may block audible autoplay until a user gesture.
-      });
-    } else {
-      audioStarted = true;
+  const startIntro = async (withSound) => {
+    if (started || finished) return;
+    started = true;
+    gate.classList.add("gate-exit");
+    video.currentTime = 0;
+    video.muted = true;
+    video.playsInline = true;
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+
+    // Call play() synchronously from the user's click to satisfy mobile autoplay policy.
+    const videoPromise = video.play();
+    let audioPromise = Promise.resolve();
+    if (withSound && audio) audioPromise = audio.play();
+
+    try { await videoPromise; } catch (_) {
+      started = false;
+      gate.classList.remove("gate-exit");
+      if (allowButton) allowButton.textContent = "▶  COBA MULAI LAGI";
+      return;
     }
+    if (withSound && audio) {
+      try { await audioPromise; }
+      catch (_) {
+        // If sound is still blocked, keep the intro going and show a clear retry action.
+        started = false;
+        gate.classList.remove("gate-exit");
+        if (allowButton) allowButton.textContent = "🔊  COBA AKTIFKAN SUARA";
+        video.pause();
+        return;
+      }
+    }
+    safetyTimer = window.setTimeout(finishIntro, 20000);
   };
 
   video.addEventListener("ended", finishIntro, { once: true });
   video.addEventListener("error", finishIntro, { once: true });
-  video.addEventListener("play", startAudio);
   video.addEventListener("timeupdate", () => {
-    if (audio && audioStarted && Math.abs(audio.currentTime - video.currentTime) > 0.35) {
+    if (audio && !audio.paused && Math.abs(audio.currentTime - video.currentTime) > 0.3) {
       try { audio.currentTime = video.currentTime; } catch (_) {}
     }
   });
-
-  // Start silent video automatically, then attempt the separate MP3.
-  video.muted = true;
-  video.playsInline = true;
-  const videoResult = video.play();
-  if (videoResult && typeof videoResult.catch === "function") {
-    videoResult.then(startAudio).catch(() => finishIntro());
-  } else {
-    startAudio();
-  }
-
-  // No visible button: the first tap anywhere retries audio if autoplay was blocked.
-  const retryAudioFromGesture = () => {
-    if (finished || audioStarted) return;
-    startAudio();
-    if (audio) {
-      audio.play().then(() => {
-        audioStarted = true;
-      }).catch(() => {});
-    }
-    document.removeEventListener("pointerdown", retryAudioFromGesture, true);
-    document.removeEventListener("touchstart", retryAudioFromGesture, true);
-    document.removeEventListener("click", retryAudioFromGesture, true);
-  };
-  document.addEventListener("pointerdown", retryAudioFromGesture, true);
-  document.addEventListener("touchstart", retryAudioFromGesture, true);
-  document.addEventListener("click", retryAudioFromGesture, true);
-
-  // Safety fallback prevents a stuck intro if a media event never fires.
-  safetyTimer = window.setTimeout(finishIntro, 20000);
+  if (allowButton) allowButton.addEventListener("click", () => startIntro(true));
+  if (silentButton) silentButton.addEventListener("click", () => startIntro(false));
 })();

@@ -3275,3 +3275,29 @@ html, body { min-height: 100%; }
 }
 #rayyIntro .rayy-intro-skip,
 #rayyIntro .rayy-intro-sound { display: none !important; }
+
+
+/* RAYY INTRO AUDIO CONSENT GATE — cinematic permission-style screen */
+#rayyIntro .rayy-audio-gate {
+  position: absolute; inset: 0; z-index: 10; display: flex; align-items: center;
+  justify-content: center; padding: 24px; background: rgba(0,0,0,.72);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  opacity: 1; visibility: visible; transition: opacity .45s ease, visibility .45s ease;
+}
+#rayyIntro .rayy-audio-gate.gate-exit { opacity: 0; visibility: hidden; pointer-events: none; }
+#rayyIntro .rayy-audio-card {
+  width: min(100%, 360px); padding: 34px 24px 26px; text-align: center;
+  color: #f7f7f7; background: linear-gradient(145deg, rgba(25,25,27,.96), rgba(5,5,6,.96));
+  border: 1px solid rgba(255,255,255,.2); border-radius: 18px;
+  box-shadow: 0 24px 90px rgba(255,255,255,.07), 0 0 0 1px rgba(255,255,255,.025) inset;
+}
+#rayyIntro .rayy-audio-mark { font: 800 42px/1 Arial,sans-serif; letter-spacing: -.09em; margin-bottom: 20px; }
+#rayyIntro .rayy-audio-mark span { color: #9b9b9b; }
+#rayyIntro .rayy-audio-kicker { font: 600 9px/1.5 Arial,sans-serif; letter-spacing: .2em; color: #aaa; margin-bottom: 13px; }
+#rayyIntro .rayy-audio-card h2 { font: 600 25px/1.2 Arial,sans-serif; letter-spacing: -.04em; margin-bottom: 11px; }
+#rayyIntro .rayy-audio-card p { color: #b7b7b7; font: 13px/1.6 Arial,sans-serif; margin: 0 auto 24px; max-width: 260px; }
+#rayyIntro .rayy-audio-allow { width: 100%; min-height: 48px; border: 1px solid #f4f4f4; border-radius: 8px; color: #090909; background: #f4f4f4; font: 700 10px/1.2 Arial,sans-serif; letter-spacing: .11em; cursor: pointer; }
+#rayyIntro .rayy-audio-allow:active { transform: scale(.985); }
+#rayyIntro .rayy-audio-silent { margin-top: 16px; border: 0; color: #999; background: transparent; font: 600 9px/1.5 Arial,sans-serif; letter-spacing: .14em; cursor: pointer; padding: 8px 12px; }
+#rayyIntro .rayy-audio-silent:hover { color: #fff; }
+@media (max-width: 600px) { #rayyIntro .rayy-audio-card { padding: 30px 21px 23px; } }
