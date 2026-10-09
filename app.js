@@ -1056,70 +1056,88 @@ checkSession();
 
 
 /* =====================================================
-   RAYY INTRO — clean cinematic autoplay, no visible buttons
-   Try sound first; if the mobile browser blocks it, fall back to muted.
-   The first user interaction anywhere on the page attempts to enable audio.
+   RAYY INTRO — separate silent video + MP3 soundtrack
+   Video autoplays muted for mobile compatibility; soundtrack is
+   attempted automatically and retried after the first user gesture.
 ===================================================== */
 (function runRayyIntroVideo() {
   const intro = document.getElementById("rayyIntro");
   const video = document.getElementById("rayyIntroVideo");
+  const audio = document.getElementById("rayyIntroAudio");
   if (!intro || !video) return;
 
   document.body.classList.add("intro-running");
   let finished = false;
-  let audioTriedFromGesture = false;
+  let audioStarted = false;
   let safetyTimer;
 
   const finishIntro = () => {
     if (finished) return;
     finished = true;
     window.clearTimeout(safetyTimer);
+    if (audio) {
+      audio.pause();
+      try { audio.currentTime = 0; } catch (_) {}
+    }
     intro.classList.add("intro-exit");
     document.body.classList.remove("intro-running");
     window.setTimeout(() => intro.remove(), 700);
   };
 
+  const startAudio = () => {
+    if (!audio || finished || audioStarted) return;
+    // Keep the separate MP3 aligned with the currently playing video.
+    try {
+      audio.currentTime = video.currentTime || 0;
+    } catch (_) {}
+    const result = audio.play();
+    if (result && typeof result.then === "function") {
+      result.then(() => {
+        audioStarted = true;
+      }).catch(() => {
+        // Mobile browsers may block audible autoplay until a user gesture.
+      });
+    } else {
+      audioStarted = true;
+    }
+  };
+
   video.addEventListener("ended", finishIntro, { once: true });
   video.addEventListener("error", finishIntro, { once: true });
-  safetyTimer = window.setTimeout(finishIntro, 20000);
+  video.addEventListener("play", startAudio);
+  video.addEventListener("timeupdate", () => {
+    if (audio && audioStarted && Math.abs(audio.currentTime - video.currentTime) > 0.35) {
+      try { audio.currentTime = video.currentTime; } catch (_) {}
+    }
+  });
 
-  // No visible sound/skip controls. Try autoplay with audio; on browser policy
-  // rejection, play muted so the intro still works seamlessly on mobile.
-  video.muted = false;
-  video.volume = 1;
-  let attempt = video.play();
-  if (attempt && typeof attempt.catch === "function") {
-    attempt.catch(() => {
-      video.muted = true;
-      const mutedAttempt = video.play();
-      if (mutedAttempt && typeof mutedAttempt.catch === "function") {
-        mutedAttempt.catch(() => {
-          // Some browsers defer playback until the next user gesture.
-          const startOnGesture = () => {
-            video.play().catch(() => {});
-            window.removeEventListener("pointerdown", startOnGesture, true);
-            window.removeEventListener("touchstart", startOnGesture, true);
-          };
-          window.addEventListener("pointerdown", startOnGesture, true);
-          window.addEventListener("touchstart", startOnGesture, true);
-        });
-      }
-    });
+  // Start silent video automatically, then attempt the separate MP3.
+  video.muted = true;
+  video.playsInline = true;
+  const videoResult = video.play();
+  if (videoResult && typeof videoResult.catch === "function") {
+    videoResult.then(startAudio).catch(() => finishIntro());
+  } else {
+    startAudio();
   }
 
-  // If autoplay was muted by policy, use the first tap anywhere to enable sound.
-  const enableAudioOnInteraction = () => {
-    if (finished || audioTriedFromGesture || !video.isConnected) return;
-    audioTriedFromGesture = true;
-    video.muted = false;
-    video.volume = 1;
-    const playResult = video.play();
-    if (playResult && typeof playResult.catch === "function") {
-      playResult.catch(() => { video.muted = true; });
+  // No visible button: the first tap anywhere retries audio if autoplay was blocked.
+  const retryAudioFromGesture = () => {
+    if (finished || audioStarted) return;
+    startAudio();
+    if (audio) {
+      audio.play().then(() => {
+        audioStarted = true;
+      }).catch(() => {});
     }
-    window.removeEventListener("pointerdown", enableAudioOnInteraction, true);
-    window.removeEventListener("touchstart", enableAudioOnInteraction, true);
+    document.removeEventListener("pointerdown", retryAudioFromGesture, true);
+    document.removeEventListener("touchstart", retryAudioFromGesture, true);
+    document.removeEventListener("click", retryAudioFromGesture, true);
   };
-  window.addEventListener("pointerdown", enableAudioOnInteraction, true);
-  window.addEventListener("touchstart", enableAudioOnInteraction, true);
+  document.addEventListener("pointerdown", retryAudioFromGesture, true);
+  document.addEventListener("touchstart", retryAudioFromGesture, true);
+  document.addEventListener("click", retryAudioFromGesture, true);
+
+  // Safety fallback prevents a stuck intro if a media event never fires.
+  safetyTimer = window.setTimeout(finishIntro, 20000);
 })();

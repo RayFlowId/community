@@ -3265,3 +3265,13 @@ html, body { min-height: 100%; }
 #rayyIntro .rayy-intro-sound:hover { background: rgba(255,255,255,.14); }
 #rayyIntro .rayy-intro-sound.sound-enabled { display: none !important; }
 @media (max-width: 600px) { #rayyIntro .rayy-intro-sound { font-size: 10px; padding: 10px 11px; } }
+
+
+/* INTRO MEDIA FINAL FIX: clean fullscreen video + separate soundtrack */
+#rayyIntroAudio { display: none !important; }
+#rayyIntro .rayy-intro-video {
+  controls: none !important;
+  pointer-events: none !important;
+}
+#rayyIntro .rayy-intro-skip,
+#rayyIntro .rayy-intro-sound { display: none !important; }
