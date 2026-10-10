@@ -494,6 +494,8 @@ registerForm.addEventListener(
         throw error;
       }
 
+      // Intro hanya dijadwalkan setelah proses pendaftaran berhasil.
+      try { localStorage.setItem("rayyCommunityIntroPending_v1", "1"); } catch (_) {}
 
       /*
        * Confirm Email kamu sebelumnya
@@ -1067,63 +1069,113 @@ checkSession();
   const silentButton = document.getElementById("rayySilentStart");
   if (!intro || !video || !gate) return;
 
-  document.body.classList.add("intro-running");
+  const PENDING_KEY = "rayyCommunityIntroPending_v1";
+  const DONE_KEY = "rayyCommunityIntroCompleted_v3";
   let finished = false;
   let started = false;
-  let safetyTimer;
+  let safetyTimer = null;
 
-  const finishIntro = () => {
+  // Jangan tampilkan intro di halaman login/register. Intro hanya aktif
+  // setelah pendaftaran berhasil dan user sudah masuk ke dashboard.
+  intro.classList.remove("rayy-intro-active");
+  intro.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("intro-running");
+
+  function hasPendingIntro() {
+    try {
+      return localStorage.getItem(PENDING_KEY) === "1" &&
+             localStorage.getItem(DONE_KEY) !== "1";
+    } catch (_) { return false; }
+  }
+
+  function finishIntro() {
     if (finished) return;
     finished = true;
-    window.clearTimeout(safetyTimer);
+    clearTimeout(safetyTimer);
     if (audio) { audio.pause(); try { audio.currentTime = 0; } catch (_) {} }
     video.pause();
+    try {
+      localStorage.setItem(DONE_KEY, "1");
+      localStorage.removeItem(PENDING_KEY);
+    } catch (_) {}
     intro.classList.add("intro-exit");
     document.body.classList.remove("intro-running");
-    window.setTimeout(() => intro.remove(), 700);
-  };
+    window.setTimeout(() => {
+      intro.classList.remove("rayy-intro-active");
+      intro.setAttribute("aria-hidden", "true");
+      intro.classList.remove("intro-exit");
+    }, 750);
+  }
 
-  const startIntro = async (withSound) => {
+  async function startIntro(withSound) {
     if (started || finished) return;
     started = true;
     gate.classList.add("gate-exit");
     video.currentTime = 0;
     video.muted = true;
     video.playsInline = true;
-    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (audio) { audio.pause(); try { audio.currentTime = 0; } catch (_) {} }
 
-    // Call play() synchronously from the user's click to satisfy mobile autoplay policy.
+    // Panggil play langsung dari interaksi tombol agar kompatibel dengan browser HP.
     const videoPromise = video.play();
-    let audioPromise = Promise.resolve();
-    if (withSound && audio) audioPromise = audio.play();
-
-    try { await videoPromise; } catch (_) {
+    const audioPromise = (withSound && audio) ? audio.play() : Promise.resolve();
+    try {
+      await videoPromise;
+      if (withSound && audio) await audioPromise;
+    } catch (_) {
       started = false;
+      video.pause();
+      if (audio) audio.pause();
       gate.classList.remove("gate-exit");
-      if (allowButton) allowButton.textContent = "▶  COBA MULAI LAGI";
+      if (allowButton) allowButton.textContent = "↻  COBA PUTAR LAGI";
+      const message = gate.querySelector("p");
+      if (message) message.textContent = "Intro belum bisa diputar. Coba lagi atau lanjutkan tanpa suara.";
       return;
     }
-    if (withSound && audio) {
-      try { await audioPromise; }
-      catch (_) {
-        // If sound is still blocked, keep the intro going and show a clear retry action.
-        started = false;
-        gate.classList.remove("gate-exit");
-        if (allowButton) allowButton.textContent = "🔊  COBA AKTIFKAN SUARA";
-        video.pause();
-        return;
-      }
-    }
-    safetyTimer = window.setTimeout(finishIntro, 20000);
-  };
+    // Fallback bila event ended tidak terpanggil oleh browser tertentu.
+    const duration = Number.isFinite(video.duration) ? video.duration : 20;
+    safetyTimer = window.setTimeout(finishIntro, Math.max(5000, (duration + 1) * 1000));
+  }
 
-  video.addEventListener("ended", finishIntro, { once: true });
-  video.addEventListener("error", finishIntro, { once: true });
+  function showIntroIfPending() {
+    if (!hasPendingIntro() || !document.body.classList.contains("dashboard-active")) return;
+    finished = false;
+    started = false;
+    intro.classList.remove("intro-exit");
+    intro.classList.add("rayy-intro-active");
+    intro.setAttribute("aria-hidden", "false");
+    document.body.classList.add("intro-running");
+    gate.classList.remove("gate-exit");
+    video.pause();
+    try { video.currentTime = 0; } catch (_) {}
+    if (audio) { audio.pause(); try { audio.currentTime = 0; } catch (_) {} }
+  }
+
+  video.addEventListener("ended", finishIntro);
+  video.addEventListener("error", () => {
+    started = false;
+    gate.classList.remove("gate-exit");
+    const message = gate.querySelector("p");
+    if (message) message.textContent = "Video intro gagal dimuat. Pastikan rayy-intro.mp4 ikut di-upload satu folder dengan index.html.";
+  });
   video.addEventListener("timeupdate", () => {
-    if (audio && !audio.paused && Math.abs(audio.currentTime - video.currentTime) > 0.3) {
+    if (audio && !audio.paused && Math.abs(audio.currentTime - video.currentTime) > 0.35) {
       try { audio.currentTime = video.currentTime; } catch (_) {}
     }
   });
   if (allowButton) allowButton.addEventListener("click", () => startIntro(true));
   if (silentButton) silentButton.addEventListener("click", () => startIntro(false));
+
+  // Dijalankan sesudah showDashboard menandai dashboard aktif.
+  const originalShowDashboard = window.showDashboard;
+  // Fungsi showDashboard dideklarasikan di scope global pada app.js klasik.
+  if (typeof showDashboard === "function") {
+    const original = showDashboard;
+    showDashboard = function(user) {
+      original(user);
+      window.setTimeout(showIntroIfPending, 120);
+    };
+  }
+  // Menangani session yang sudah tersedia ketika halaman pertama kali dibuka.
+  window.setTimeout(showIntroIfPending, 350);
 })();

@@ -3301,3 +3301,31 @@ html, body { min-height: 100%; }
 #rayyIntro .rayy-audio-silent { margin-top: 16px; border: 0; color: #999; background: transparent; font: 600 9px/1.5 Arial,sans-serif; letter-spacing: .14em; cursor: pointer; padding: 8px 12px; }
 #rayyIntro .rayy-audio-silent:hover { color: #fff; }
 @media (max-width: 600px) { #rayyIntro .rayy-audio-card { padding: 30px 21px 23px; } }
+
+/* RAYY INTRO — polished consent card; hidden until registration has succeeded */
+#rayyIntro.rayy-intro { display: none !important; }
+#rayyIntro.rayy-intro.rayy-intro-active { display: block !important; }
+#rayyIntro .rayy-audio-gate {
+  background: radial-gradient(ellipse at 50% 38%, rgba(55,55,55,.48), rgba(0,0,0,.86) 68%);
+  padding: 22px;
+}
+#rayyIntro .rayy-audio-card {
+  position: relative; width: min(100%, 390px); padding: 36px 27px 25px;
+  border-radius: 22px; border: 1px solid rgba(255,255,255,.17);
+  background: linear-gradient(155deg, rgba(29,29,31,.97), rgba(8,8,9,.98) 72%);
+  box-shadow: 0 30px 100px rgba(0,0,0,.65), 0 0 50px rgba(255,255,255,.045), inset 0 1px rgba(255,255,255,.08);
+  animation: rayyCardEnter .55s cubic-bezier(.2,.8,.2,1) both;
+}
+#rayyIntro .rayy-audio-card::before { content:""; position:absolute; top:0; left:28%; right:28%; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent); }
+#rayyIntro .rayy-audio-mark { display:grid; place-items:center; width:62px; height:62px; margin:0 auto 22px; border:1px solid rgba(255,255,255,.25); border-radius:19px; background:linear-gradient(145deg,#292929,#0b0b0b); font-size:38px; box-shadow:0 10px 32px #000; }
+#rayyIntro .rayy-audio-kicker { color:#aaa; font-size:9px; letter-spacing:.19em; line-height:1.8; margin-bottom:12px; }
+#rayyIntro .rayy-audio-card h2 { margin:0 0 12px; font-size:clamp(27px,7vw,32px); font-weight:750; letter-spacing:-.055em; }
+#rayyIntro .rayy-audio-card p { max-width:290px; margin:0 auto 25px; color:#b8b8b8; font-size:13px; line-height:1.8; }
+#rayyIntro .rayy-audio-allow { display:flex; align-items:center; justify-content:center; gap:4px; width:100%; min-height:52px; padding:13px 15px; border:1px solid #f4f4f4; border-radius:12px; background:#f4f4f4; color:#090909; font:750 11px/1.4 Inter,Arial,sans-serif; letter-spacing:.075em; box-shadow:0 8px 26px rgba(255,255,255,.09); transition:transform .2s ease, background .2s ease, box-shadow .2s ease; }
+#rayyIntro .rayy-audio-allow:hover { transform:translateY(-2px); background:#fff; box-shadow:0 12px 30px rgba(255,255,255,.14); }
+#rayyIntro .rayy-audio-allow:active { transform:scale(.985); }
+#rayyIntro .rayy-audio-silent { display:block; margin:12px auto 0; padding:10px 12px; color:#aaa; font:650 10px/1.5 Inter,Arial,sans-serif; letter-spacing:.08em; }
+#rayyIntro .rayy-audio-silent:hover { color:#fff; }
+#rayyIntro .rayy-audio-note { margin-top:19px; color:#646464; font:9px/1.5 Inter,Arial,sans-serif; letter-spacing:.15em; }
+@keyframes rayyCardEnter { from { opacity:0; transform:translateY(12px) scale(.98); } to { opacity:1; transform:translateY(0) scale(1); } }
+@media(max-width:480px) { #rayyIntro .rayy-audio-card { padding:31px 21px 23px; border-radius:19px; } #rayyIntro .rayy-audio-mark { width:56px; height:56px; border-radius:17px; font-size:34px; } }

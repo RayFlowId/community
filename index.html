@@ -23,7 +23,7 @@
 <body>
 
   <!-- RAYY INTRO VIDEO: memakai video asli yang dikirim Rayy -->
-  <div id="rayyIntro" class="rayy-intro" aria-label="Rayy intro video">
+  <div id="rayyIntro" class="rayy-intro" aria-label="Rayy intro video" aria-hidden="true">
     <video id="rayyIntroVideo" class="rayy-intro-video" muted playsinline webkit-playsinline preload="auto">
       <source src="rayy-intro.mp4" type="video/mp4">
     </video>
@@ -31,11 +31,12 @@
     <div id="rayyAudioGate" class="rayy-audio-gate">
       <div class="rayy-audio-card">
         <div class="rayy-audio-mark">R<span>.</span></div>
-        <div class="rayy-audio-kicker">RAYY COMMUNITY · INTRO EXPERIENCE</div>
-        <h2>Ready to enter?</h2>
-        <p>Izinkan audio untuk menikmati intro Rayy dengan musik.</p>
-        <button id="rayyAllowAudio" class="rayy-audio-allow" type="button">▶ &nbsp; MULAI DENGAN SUARA</button>
-        <button id="rayySilentStart" class="rayy-audio-silent" type="button">LANJUT TANPA SUARA</button>
+        <div class="rayy-audio-kicker">A LITTLE MOMENT BEFORE YOU ENTER</div>
+        <h2>Welcome to Rayy.</h2>
+        <p>Putar intro singkat dengan musik untuk masuk ke Community Rayy. Kamu juga bisa lanjut tanpa suara.</p>
+        <button id="rayyAllowAudio" class="rayy-audio-allow" type="button"><span aria-hidden="true">▶</span> &nbsp; PUTAR INTRO DENGAN MUSIK</button>
+        <button id="rayySilentStart" class="rayy-audio-silent" type="button">LEWATI MUSIK · LANJUTKAN</button>
+        <div class="rayy-audio-note">PILIHANMU · HANYA MUNCUL SEKALI</div>
       </div>
     </div>
   </div>
